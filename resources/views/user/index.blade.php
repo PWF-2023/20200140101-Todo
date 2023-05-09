@@ -83,9 +83,9 @@
                                         <p>{{ $user->todos->count() }}
                                             <span>
                                                 <span
-                                                    class="text-green-600 dark:text-gray-400">({{ $user->todos->where('is_complete', true)->count() }}</span>
+                                                    class="text-green-600 dark:text-gray-400">({{ $user->todos->where('is_completed', true)->count() }}</span>
                                                 <span
-                                                    class="text-blue-600 dark:text-blue-400">{{ $user->todos->where('is_complete', false)->count() }})
+                                                    class="text-blue-600 dark:text-blue-400">{{ $user->todos->where('is_completed', false)->count() }})
                                                 </span>
                                             </span>
                                         </p>
