@@ -83,7 +83,7 @@
                                         <p>{{ $user->todos->count() }}
                                             <span>
                                                 <span
-                                                    class="text-green-600 dark:text-gray-400">({{ $user->todos->where('is_completed', true)->count() }}</span>
+                                                    class="text-green-600 dark:text-green-400">({{ $user->todos->where('is_completed', true)->count() }}</span>
                                                 <span
                                                     class="text-blue-600 dark:text-blue-400">{{ $user->todos->where('is_completed', false)->count() }})
                                                 </span>
@@ -93,6 +93,33 @@
                                     <td class="px-6 py-4">
                                         <div class="flex space-x-3">
                                             {{-- Action Here --}}
+                                            @if ($user->is_admin)
+                                                <form action="{{ route('user.removeadmin', $user) }}" method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                                                        Remove Admin
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('user.makeadmin', $user) }}" method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="text-red-600 dark:text-red-400 whitespace-nowrap">
+                                                        Make Admin
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            <form action="{{ route('user.destroy', $user) }}" method="Post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit"
+                                                    class="text-red-600 dark:text-red-400 whitespace-nowrap">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
